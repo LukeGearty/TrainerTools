@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Client
 from django.contrib.auth.forms import UserCreationForm
 from django.views import generic
@@ -24,6 +24,11 @@ def add_client(request):
     else:
         form = ClientForm()
     return render(request, "core/add_client.html", {"form": form})
+
+@login_required
+def client_detail(request, pk):
+    client = get_object_or_404(Client, pk=pk, trainer=request.user)
+    return render(request, "core/client_detail.html", {"client": client})
 
 
 class RegisterView(generic.CreateView):

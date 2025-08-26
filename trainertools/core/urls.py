@@ -9,4 +9,5 @@ urlpatterns = [
     path("dashboard/", views.dashboard, name="dashboard"),
     path("register/", RegisterView.as_view(), name="register"),
     path("add-client/", views.add_client, name="add_client"),
+    path("client/<int:pk>", views.client_detail, name="client_detail"),
 ]

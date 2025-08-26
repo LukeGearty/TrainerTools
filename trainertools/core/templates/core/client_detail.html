@@ -1,0 +1,12 @@
+{% extends "core/base.html" %}
+
+{% block title %}Client: {{ client.first_name }} {{ client.last_name }}{% endblock %}
+
+{% block content %}
+    <h2>{{ client.first_name }} {{ client.last_name }}</h2>
+    <p><strong>Email: </strong> {{ client.email }}</p>
+    <p><strong>Notes: </strong> {{ client.notes }}</p>
+
+
+    <a href="{% url 'dashboard' %}">Back to Dashboard</a>
+{% endblock %}

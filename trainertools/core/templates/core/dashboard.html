@@ -13,7 +13,9 @@
     <h3>Your Clients: </h3>
     <ul>
         {% for client in clients %}
-            <li>{{ client.first_name }} {{ client.last_name }} {{ client.email }}</li>
+            <a href="{% url 'client_detail' client.pk %}">
+                <li>{{ client.first_name }} {{ client.last_name }}</li>
+            </a>
         {% empty %}
             <li>No clients yet.</li>
         {% endfor %}
