@@ -1,0 +1,12 @@
+{% extends "core/base.html" %}
+
+{% block title %}Add Client{% endblock %}
+
+{% block content %}
+    <h2>Add a New client</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Client</button>
+    </form>
+{% endblock %}

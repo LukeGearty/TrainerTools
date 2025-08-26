@@ -1,15 +1,30 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Client
 from django.contrib.auth.forms import UserCreationForm
 from django.views import generic
 from django.urls import reverse_lazy
+from .forms import ClientForm
 
 
 @login_required
 def dashboard(request):
     clients = Client.objects.filter(trainer=request.user)
     return render(request, 'core/dashboard.html', {"clients": clients})
+
+@login_required
+def add_client(request):
+    if request.method == "POST":
+        form = ClientForm(request.POST)
+        if form.is_valid():
+            client = form.save(commit=False)
+            client.trainer = request.user
+            client.save()
+            return redirect("dashboard")
+    else:
+        form = ClientForm()
+    return render(request, "core/add_client.html", {"form": form})
+
 
 class RegisterView(generic.CreateView):
     form_class = UserCreationForm
