@@ -30,6 +30,25 @@ def client_detail(request, pk):
     client = get_object_or_404(Client, pk=pk, trainer=request.user)
     return render(request, "core/client_detail.html", {"client": client})
 
+@login_required
+def edit_client(request, pk):
+    client = get_object_or_404(Client, pk=pk, trainer=request.user)
+    if request.method == "POST":
+        form = ClientForm(request.POST, instance=client)
+        if form.is_valid():
+            form.save()
+            return redirect("client_detail", pk=client.pk)
+    else:
+        form = ClientForm(instance=client)
+    return render(request, "core/edit_client.html", {"form": form, "client":client})
+
+@login_required
+def delete_client(request, pk):
+    client = get_object_or_404(Client, pk=pk, trainer=request.user)
+    if request.method == "POST":
+        client.delete()
+        return redirect("dashboard")
+    return render(request, "core/delete_client.html", {"client": client})
 
 class RegisterView(generic.CreateView):
     form_class = UserCreationForm

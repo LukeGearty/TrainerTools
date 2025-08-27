@@ -10,4 +10,6 @@ urlpatterns = [
     path("register/", RegisterView.as_view(), name="register"),
     path("add-client/", views.add_client, name="add_client"),
     path("client/<int:pk>", views.client_detail, name="client_detail"),
+    path("client/<int:pk>/edit/", views.edit_client, name="edit_client"),
+    path("client/<int:pk>/delete/", views.delete_client, name="delete_client")
 ]
