@@ -4,22 +4,27 @@
 
 {% block content %}
 
-    <h2>Welcome {{ request.user.username }}</h2>
+    <div class="dashboard-container">
+        <h2>Welcome {{ request.user.username }}</h2>
 
-    <a href="{% url 'add_client' %}">
-        <button type>Add Client</button>
-    </a>
+        <div class="actions">
+            <a href="{% url 'add_client' %}" class="btn primary">+ Add Client</a>
+        </div>
+        </a>
 
-    <h3>Your Clients: </h3>
-    <ul>
-        {% for client in clients %}
-            <a href="{% url 'client_detail' client.pk %}">
-                <li>{{ client.first_name }} {{ client.last_name }}</li>
-            </a>
-        {% empty %}
-            <li>No clients yet.</li>
-        {% endfor %}
-    </ul>
+        <div class="card">
+            <h3>Your Clients: </h3>
+            <ul class="client-list">
+                {% for client in clients %}
+                    <a href="{% url 'client_detail' client.pk %}">
+                        <li>{{ client.first_name }} {{ client.last_name }}</li>
+                    </a>
+                {% empty %}
+                    <li class="empty">No clients yet.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 
 {% endblock %}
     

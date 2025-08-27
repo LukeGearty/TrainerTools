@@ -115,3 +115,153 @@ input:focus, select:focus, textarea:focus {
     outline: none;
     box-shadow: 0 0 0 2px rgba(59,130,246,0.3);
 }
+
+
+/* Dashboard container */
+.dashboard-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+
+/* Action button row */
+.actions {
+    margin: 1rem 0;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.btn.primary {
+    background: #3b82f6;
+    color: white;
+    border: none;
+}
+
+.btn.primary:hover {
+    background: #2563eb;
+}
+
+/* Card styling */
+.card {
+    background: white;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Client list */
+.client-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.client-list li {
+    margin: 0.5rem 0;
+}
+
+.client-link {
+    display: block;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    color: #374151; /* gray-700 */
+    background: #f9fafb;
+    transition: all 0.2s ease;
+}
+
+.client-link:hover {
+    background: #e5e7eb; /* gray-200 */
+}
+
+/* Empty state */
+.empty {
+    color: #9ca3af; /* gray-400 */
+    font-style: italic;
+}
+
+
+/* Client detail layout */
+.client-detail {
+    max-width: 800px;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Header row inside cards */
+.header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+/* Workout list styling */
+.workout-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.workout-item {
+    background: #f9fafb;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    transition: background 0.2s ease;
+}
+
+.workout-item:hover {
+    background: #f3f4f6; /* light hover */
+}
+
+.workout-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.workout-date {
+    color: #2563eb; /* blue-600 */
+}
+
+.workout-type {
+    background: #e5e7eb;
+    padding: 0.2rem 0.6rem;
+    border-radius: 0.4rem;
+    font-size: 0.9rem;
+}
+
+/* Workout description */
+.workout-desc {
+    margin: 0;
+    color: #374151; /* gray-700 */
+}
+
+/* Button variations */
+.btn.secondary {
+    background: #6b7280; /* gray-500 */
+    color: white;
+}
+.btn.secondary:hover {
+    background: #4b5563;
+}
+
+.btn.danger {
+    background: #ef4444; /* red-500 */
+    color: white;
+}
+.btn.danger:hover {
+    background: #dc2626;
+}

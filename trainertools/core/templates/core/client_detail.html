@@ -3,26 +3,43 @@
 {% block title %}Client: {{ client.first_name }} {{ client.last_name }}{% endblock %}
 
 {% block content %}
-    <h2>{{ client.first_name }} {{ client.last_name }}</h2>
-    <p><strong>Email: </strong> {{ client.email }}</p>
-    <p><strong>Notes: </strong> {{ client.notes }}</p>
+    <div class="client-detail">
+        <div class="card">
+            <h2>{{ client.first_name }} {{ client.last_name }}</h2>
+            <p><strong>Email: </strong> {{ client.email }}</p>
+            <p><strong>Notes: </strong> {{ client.notes }}</p>
 
-    <h3>Workouts
-        {% if client.workouts.all %}
-            <ul>
-                {% for workout in client.workouts.all %}
-                    <li>
-                        <strong>{{ workout.date }}</strong> - {{ workout.get_workout_type_display }} <br> {{ workout.description }}
-                    </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>No Workouts yet.</p>
-        {% endif %}
-    </h3>
+            <div class="actions">
+                <a href="{% url 'edit_client' client.pk %}">Edit</a> |
+                <a href="{% url 'delete_client' client.pk %}">Delete</a>
+                <a href="{% url 'dashboard' %}">Back to Dashboard</a>
+            </div>
+        </div>
 
-    <a href="{% url 'add_workout' client.pk %}">➕ Add Workout</a> |
-    <a href="{% url 'dashboard' %}">Back to Dashboard</a>
-    <a href="{% url 'edit_client' client.pk %}">Edit</a> |
-    <a href="{% url 'delete_client' client.pk %}">Delete</a>
+        <div class="card">
+
+            <div class="header-row">
+                <h3>Workouts</h3>
+                <a href="{% url 'add_workout' client.pk %}">➕ Add Workout</a>
+            </div>
+            {% if client.workouts.all %}
+                <ul class="workout-list">
+                    {% for workout in client.workouts.all %}
+                        <li class="workout-item">
+                            <div class="workout-header">
+                            <span class="workout-date">{{ workout.date }}</span>
+                            <span class="workout-type">{{ workout.get_workout_type_display }}</span>
+                        </div>
+                        <p class="workout-desc">{{ workout.description }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="empty">No Workouts yet.</p>
+            {% endif %}
+    </div>
+
+    
+    
+    
 {% endblock %}
