@@ -7,7 +7,21 @@
     <p><strong>Email: </strong> {{ client.email }}</p>
     <p><strong>Notes: </strong> {{ client.notes }}</p>
 
+    <h3>Workouts
+        {% if client.workouts.all %}
+            <ul>
+                {% for workout in client.workouts.all %}
+                    <li>
+                        <strong>{{ workout.date }}</strong> - {{ workout.get_workout_type_display }} <br> {{ workout.description }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No Workouts yet.</p>
+        {% endif %}
+    </h3>
 
+    <a href="{% url 'add_workout' client.pk %}">➕ Add Workout</a> |
     <a href="{% url 'dashboard' %}">Back to Dashboard</a>
     <a href="{% url 'edit_client' client.pk %}">Edit</a> |
     <a href="{% url 'delete_client' client.pk %}">Delete</a>

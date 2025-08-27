@@ -14,3 +14,21 @@ class Client(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+
+
+class Workout(models.Model):
+    WORKOUT_TYPES = [
+        ("cardio", "Cardio"),
+        ("strength", "Strength Training"),
+        ("flexibility", "Flexibility"),
+        ("mobility", "Mobility"),
+        ("other", "Other"),
+    ]
+
+    client = models.ForeignKey(Client, on_delete=models.CASCADE, related_name="workouts")
+    date = models.DateField()
+    workout_type = models.CharField(max_length=20, choices=WORKOUT_TYPES)
+    description = models.TextField()
+
+    def __str__(self):
+        return f"{self.client.name} - {self.get_workout_type_display()} on {self.date}"

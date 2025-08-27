@@ -4,7 +4,7 @@ from .models import Client
 from django.contrib.auth.forms import UserCreationForm
 from django.views import generic
 from django.urls import reverse_lazy
-from .forms import ClientForm
+from .forms import ClientForm, WorkoutForm
 
 
 @login_required
@@ -49,6 +49,21 @@ def delete_client(request, pk):
         client.delete()
         return redirect("dashboard")
     return render(request, "core/delete_client.html", {"client": client})
+
+
+@login_required
+def add_workout(request, pk):
+    client = get_object_or_404(Client, pk=pk, trainer=request.user)
+    if request.method == "POST":
+        form = WorkoutForm(request.POST)
+        if form.is_valid():
+            workout = form.save(commit=False)
+            workout.client = client
+            workout.save()
+            return redirect("client_detail", pk=client.pk)
+    else:
+        form = WorkoutForm()
+    return render(request, "core/add_workouts.html", {"form": form, "client": client})
 
 class RegisterView(generic.CreateView):
     form_class = UserCreationForm

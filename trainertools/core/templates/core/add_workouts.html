@@ -1,0 +1,13 @@
+{% extends "core/base.html" %}
+
+{% block title %}Add Workout for {{ client.name }}{% endblock %}
+
+{% block content %}
+    <h2>Add Workout for {{ client.name }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Workout</button>
+    </form>
+    <a href="{% url 'client_detail' client.pk %}">Cancel</a>
+{% endblock %}
