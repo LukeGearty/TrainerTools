@@ -1,0 +1,22 @@
+{% extends "manager/base.html" %}
+
+{% block title %}Manager Dashboard{% endblock %}
+
+{% block content %}
+<h2>Welcome, {{ request.user.username }} (Manager)</h2>
+
+<div class="card">
+    <h3>Your Trainers</h3>
+    <ul>
+        {% for trainer in trainers %}
+            <li>
+                <a href="{% url 'trainer_detail' trainer.pk %}">
+                    {{ trainer.user.username }}
+                </a>
+            </li>
+        {% empty %}
+            <li>No trainers assigned.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

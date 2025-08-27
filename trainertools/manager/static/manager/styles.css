@@ -1,0 +1,76 @@
+body {
+    background-color: #f3f4f6; /* light gray */
+    font-family: "Segoe UI", sans-serif;
+    color: #1f2937; /* dark gray */
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #111827; /* dark slate */
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 1.6rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+nav ul li a,
+nav ul li button {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid transparent;
+    transition: background 0.2s ease;
+}
+
+nav ul li a:hover,
+nav ul li button:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+/* Card style for main content */
+.card {
+    background: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+/* Buttons */
+.btn {
+    background-color: #3b82f6;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.btn:hover {
+    background-color: #2563eb;
+}
+
+.btn.logout {
+    background-color: #ef4444;
+}
+
+.btn.logout:hover {
+    background-color: #dc2626;
+}
