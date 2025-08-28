@@ -5,6 +5,17 @@ from django.contrib.auth.forms import UserCreationForm
 from django.views import generic
 from django.urls import reverse_lazy
 from .forms import ClientForm, WorkoutForm
+from django.contrib.auth.views import LoginView
+
+class TrainerLoginView(LoginView):
+    template_name = "core/login.html"
+
+    def form_valid(self, form):
+        if self.request.user.profile.role != "trainer":
+            form.add_error(None, "You are not authorized as a trainer")
+            return self.form_invalid(form)
+        return super().form_valid(form)
+
 
 
 @login_required

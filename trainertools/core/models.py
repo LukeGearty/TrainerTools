@@ -1,8 +1,28 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+class TrainerProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
+    ROLE_CHOICES = (
+        ('trainer', 'Trainer'),
+        ('manager', 'Manager'),
+    )
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
+    manager = models.ForeignKey(
+        "self", null=True, blank=True, on_delete=models.SET_NULL, related_name="trainers"
+    )
+    role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='trainer')
+
+    def __str__(self):
+        return f"{self.user.username} ({self.get_role_display()})"
 
 
-#Trainer will be the default user
+@receiver(post_save, sender=User)
+def create_trainer_profile(sender, instance, created, **kwargs):
+    if created:
+        TrainerProfile.objects.create(user=instance)
 
 class Client(models.Model):
     trainer = models.ForeignKey(User, on_delete=models.CASCADE, related_name="clients")

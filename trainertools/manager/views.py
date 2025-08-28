@@ -5,6 +5,19 @@ from django.contrib.auth.decorators import login_required
 from core.models import Client
 from .models import TrainerProfile
 from django.contrib.auth.models import User
+from django.contrib.auth.views import LoginView
+
+
+class ManagerLoginView(LoginView):
+    template_name = "manager/login.html"
+
+    def form_valid(self, form):
+        # Only allow users with role=manager
+        if self.request.user.profile.role != "manager":
+            form.add_error(None, "You are not authorized as a manager")
+            return self.form_invalid(form)
+        return super().form_valid(form)
+
 
 
 def manager_login(request):
